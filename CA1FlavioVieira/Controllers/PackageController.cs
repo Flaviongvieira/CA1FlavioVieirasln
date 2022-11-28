@@ -41,7 +41,12 @@ namespace CA1FlavioVieira.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _repo.AddPackage(package);
+                    var packages = _repo.DisplayPackages();
+                    var pid = packages.Select(x=> x.PackageId).ToList();
+                    if (!pid.Contains(package.PackageId))
+                    {
+                        _repo.AddPackage(package);
+                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
