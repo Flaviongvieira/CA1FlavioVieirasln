@@ -1,7 +1,10 @@
+using CA1FlavioVieira.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IRepository, MockDB>();
 
 var app = builder.Build();
 
