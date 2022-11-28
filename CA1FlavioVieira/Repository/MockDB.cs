@@ -9,6 +9,7 @@ namespace CA1FlavioVieira.Repository
         // create a list in lieu of DB
         private static List<Package> Packages = new List<Package>()
         {
+            // Example to test
             new Package()
             {
                 PackageId = 1,
@@ -23,7 +24,11 @@ namespace CA1FlavioVieira.Repository
 
         public void AddPackage(Package package)
         {
-            Packages.Add(package);
+            var pid = Packages.Select(x => x.PackageId).ToList();
+            if (!pid.Contains(package.PackageId))
+            {
+                Packages.Add(package);
+            }
         }
 
         public List<Package> DisplayPackages()
